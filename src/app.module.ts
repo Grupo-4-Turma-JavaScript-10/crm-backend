@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Bolsa } from './bolsa/entities/bolsa.entity';
-import { Estudante } from './estudante/entities/estudante.entity';
+import { EstudanteModule } from './estudante/estudante.module';
+import { BolsaModule } from './bolsa/bolsa.module';
 
 @Module({
   imports: [
@@ -12,8 +12,9 @@ import { Estudante } from './estudante/entities/estudante.entity';
       username: 'root',
       password: 'root',
       database: 'db_crm',
-      entities: [Bolsa, Estudante],
+      entities: [],
     }),
+    EstudanteModule,BolsaModule
   ],
   controllers: [],
   providers: [],
