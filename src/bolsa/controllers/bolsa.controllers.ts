@@ -52,4 +52,13 @@ export class BolsaController {
   delete(@Param('id', ParseIntPipe) id: number) {
     return this.bolsaService.delete(id);
   }
+
+  @Put('/:id/status/:ativa')
+  @HttpCode(HttpStatus.OK)
+  updateStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('ativa') ativa: boolean,
+  ): Promise<{ bolsa: Bolsa; estudantesAfetados: number }> {
+    return this.bolsaService.updateStatus(id, ativa);
+  }
 }

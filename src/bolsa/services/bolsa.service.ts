@@ -2,12 +2,15 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bolsa } from '../entities/bolsa.entity';
 import { ILike, Repository, DeleteResult } from 'typeorm';
+import { Estudante } from '../../estudante/entities/estudante.entity';
 
 @Injectable()
 export class BolsaService {
   constructor(
     @InjectRepository(Bolsa)
     private bolsaRepository: Repository<Bolsa>,
+    @InjectRepository(Estudante)
+    private estudanteRepository: Repository<Estudante>,
   ) {}
 
   async findAll(): Promise<Bolsa[]> {
@@ -43,6 +46,29 @@ export class BolsaService {
         estudante: true,
       },
     });
+  }
+
+  async updateStatus(id: number, ativa: boolean): Promise<{ bolsa: Bolsa; estudantesAfetados: number }> {
+    const bolsa = await this.findById(id);
+    bolsa.ativa = ativa;
+    await this.bolsaRepository.save(bolsa);
+
+  if (bolsa.estudante) {
+
+      bolsa.estudante.ativo = ativa;
+      await this.estudanteRepository.save(bolsa.estudante);
+
+      return {
+        bolsa: await this.findById(id),
+        estudantesAfetados: 1,
+      };
+    }
+
+    return {
+      bolsa,
+      estudantesAfetados: 0,
+    };
+
   }
 
   async create(Bolsa: Bolsa): Promise<Bolsa> {
