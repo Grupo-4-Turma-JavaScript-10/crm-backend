@@ -21,13 +21,17 @@ export class Bolsa {
   @Column({ type: 'date' })
   validade: Date;
 
-  @Column({ default: true })
-  ativa: boolean;
+  @Column({
+  type: 'tinyint',
+  width: 1,
+  default: 1,
+})
+  ativa: boolean; // Se a bolsa está ativa
 
   // RELACIONAMENTO
   @OneToMany(() => Estudante, (estudante) => estudante.bolsa, {
     onDelete: 'SET NULL',
     nullable: true,
   })
-  estudante: Estudante;
+  estudante: Estudante[];
 }

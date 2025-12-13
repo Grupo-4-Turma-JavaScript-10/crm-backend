@@ -11,7 +11,7 @@ export class BolsaService {
     private bolsaRepository: Repository<Bolsa>,
     @InjectRepository(Estudante)
     private estudanteRepository: Repository<Estudante>,
-  ) {}
+  ) { }
 
   async findAll(): Promise<Bolsa[]> {
     return await this.bolsaRepository.find({
@@ -48,29 +48,23 @@ export class BolsaService {
     });
   }
 
-  async updateStatus(
-    id: number,
-    ativa: boolean,
-  ): Promise<{ bolsa: Bolsa; estudantesAfetados: number }> {
-    const bolsa = await this.findById(id);
-    bolsa.ativa = ativa;
-    await this.bolsaRepository.save(bolsa);
+async updateStatus(
+  id: number,
+  ativa: boolean,
+): Promise<{ bolsa: Bolsa; estudantesAfetados: number }> {
 
-    if (bolsa.estudante) {
-      bolsa.estudante.ativo = ativa;
-      await this.estudanteRepository.save(bolsa.estudante);
+  await this.bolsaRepository.update(id, { ativa });
+  const result = await this.estudanteRepository.update(
+    { bolsa: { id } },
+    { ativo: ativa }
+  );
 
-      return {
-        bolsa: await this.findById(id),
-        estudantesAfetados: 1,
-      };
-    }
+  return {
+    bolsa: await this.findById(id),
+    estudantesAfetados: result.affected ?? 0,
+  };
+}
 
-    return {
-      bolsa,
-      estudantesAfetados: 0,
-    };
-  }
 
   async create(Bolsa: Bolsa): Promise<Bolsa> {
     return await this.bolsaRepository.save(Bolsa);
