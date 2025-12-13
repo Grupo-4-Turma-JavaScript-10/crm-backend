@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Estudante } from '../../estudante/entities/estudante.entity';
 
 @Entity({ name: 'tb_bolsas' })
@@ -25,7 +25,7 @@ export class Bolsa {
   ativa: boolean; // Se a bolsa está ativa
 
   // RELACIONAMENTO
-  @ManyToOne(() => Estudante, (estudante) => estudante.bolsa, {
+  @OneToMany(() => Estudante, (estudante) => estudante.bolsa, {
     onDelete: 'SET NULL',
     nullable: true,
   })
