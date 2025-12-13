@@ -48,13 +48,15 @@ export class BolsaService {
     });
   }
 
-  async updateStatus(id: number, ativa: boolean): Promise<{ bolsa: Bolsa; estudantesAfetados: number }> {
+  async updateStatus(
+    id: number,
+    ativa: boolean,
+  ): Promise<{ bolsa: Bolsa; estudantesAfetados: number }> {
     const bolsa = await this.findById(id);
     bolsa.ativa = ativa;
     await this.bolsaRepository.save(bolsa);
 
-  if (bolsa.estudante) {
-
+    if (bolsa.estudante) {
       bolsa.estudante.ativo = ativa;
       await this.estudanteRepository.save(bolsa.estudante);
 
@@ -68,7 +70,6 @@ export class BolsaService {
       bolsa,
       estudantesAfetados: 0,
     };
-
   }
 
   async create(Bolsa: Bolsa): Promise<Bolsa> {
