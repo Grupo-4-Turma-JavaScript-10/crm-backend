@@ -40,6 +40,11 @@ export class EstudanteController {
   create(@Body() estudante: Estudante): Promise<Estudante> {
     return this.estudanteService.create(estudante);
   }
+  @Put('/status/:id')
+  @HttpCode(HttpStatus.OK)
+  updateStatus(@Param('id', ParseIntPipe) id: number, @Body('ativo') ativo: boolean): Promise<Estudante> {
+    return this.estudanteService.updateStatus(id, ativo);
+  }
 
   @Put()
   @HttpCode(HttpStatus.OK)
