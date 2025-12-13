@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Bolsa } from '../../bolsa/entities/bolsa.entity';
 
 @Entity({ name: 'tb_estudantes' })
@@ -35,6 +35,6 @@ export class Estudante {
   @Column({ type: 'boolean', nullable: false })
   ativo: boolean;
 
-  @OneToMany(() => Bolsa, (bolsa) => bolsa.estudante)
-  bolsa: Bolsa[];
+  @ManyToOne(() => Bolsa, (bolsa) => bolsa.estudante)
+  bolsa: Bolsa;
 }

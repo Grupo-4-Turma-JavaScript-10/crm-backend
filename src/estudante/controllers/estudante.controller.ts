@@ -38,6 +38,7 @@ export class EstudanteController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() estudante: Estudante): Promise<Estudante> {
+
     return this.estudanteService.create(estudante);
   }
   @Put('/status/:id')
