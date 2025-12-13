@@ -49,6 +49,12 @@ export class EstudanteService {
     });
   }
 
+  async updateStatus(id: number, ativo: boolean): Promise<Estudante> {
+    const estudante = await this.findById(id);
+    estudante.ativo = ativo;
+    return await this.estudanteRepository.save(estudante);
+  }
+
   async create(estudante: Estudante): Promise<Estudante> {
     return await this.estudanteRepository.save(estudante);
   }
