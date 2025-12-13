@@ -32,7 +32,11 @@ export class Estudante {
   @Column({ length: 255, nullable: false })
   cursoInteresse: string;
 
-  @Column({ type: 'boolean', nullable: false })
+  @Column({
+  type: 'tinyint',
+  width: 1,
+  default: 1,
+})
   ativo: boolean;
 
   @ManyToOne(() => Bolsa, (bolsa) => bolsa.estudante)

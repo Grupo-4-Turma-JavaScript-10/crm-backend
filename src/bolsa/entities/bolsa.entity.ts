@@ -21,7 +21,11 @@ export class Bolsa {
   @Column({ type: 'date' })
   validade: Date; // Data limite da oferta
 
-  @Column({ default: true })
+  @Column({
+  type: 'tinyint',
+  width: 1,
+  default: 1,
+})
   ativa: boolean; // Se a bolsa está ativa
 
   // RELACIONAMENTO
@@ -29,5 +33,5 @@ export class Bolsa {
     onDelete: 'SET NULL',
     nullable: true,
   })
-  estudante: Estudante;
+  estudante: Estudante[];
 }
