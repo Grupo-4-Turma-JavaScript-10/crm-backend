@@ -7,24 +7,23 @@ export class Bolsa {
   id: number;
 
   @Column()
-  nome: string; // Ex: Bolsa Integral, Bolsa Parcial, Desconto 50%
+  nome: string;
 
   @Column('decimal', { precision: 5, scale: 2 })
-  porcentagem: number; // Ex: 100, 50, 75
+  porcentagem: number;
 
   @Column()
-  instituicao: string; // Universidade / escola da bolsa
+  instituicao: string;
 
   @Column({ nullable: true })
-  curso: string; // Curso específico, se tiver
+  curso: string;
 
   @Column({ type: 'date' })
-  validade: Date; // Data limite da oferta
+  validade: Date;
 
   @Column({ default: true })
-  ativa: boolean; // Se a bolsa está ativa
+  ativa: boolean;
 
-  // RELACIONAMENTO
   @ManyToOne(() => Estudante, (estudante) => estudante.bolsa, {
     onDelete: 'SET NULL',
     nullable: true,

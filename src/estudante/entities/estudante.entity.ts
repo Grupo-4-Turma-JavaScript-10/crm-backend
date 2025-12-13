@@ -16,12 +16,6 @@ export class Estudante {
   @IsEmail()
   email: string;
 
-  // @Column({ nullable: true })
-  // telefone: string;
-
-  // @Column({ nullable: true })
-  // cpf?: string;
-
   @Column({ length: 255, nullable: false })
   endereco: string;
 
