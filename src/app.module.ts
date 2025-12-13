@@ -10,7 +10,7 @@ import { BolsaModule } from './bolsa/bolsa.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '95095100',
+      password: 'root',
       database: 'db_crm',
       autoLoadEntities: true,
       synchronize: true,
