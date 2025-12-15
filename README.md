@@ -33,7 +33,7 @@ Este projeto foi desenvolvido pela equipe **Grupo 4** da **Turma JavaScript 10**
 
 ## 📝 Descrição
 
-O **CRM Backend** é uma API construída com NestJS para gerenciamento de estudantes interessados em cursos e das bolsas de estudo disponíveis. O objetivo é oferecer uma base sólida para cadastro, consulta, atualização e vinculação de estudantes às bolsas, com integração a banco de dados relacional e boas práticas de desenvolvimento.
+O **Path Educ** é uma API construída com NestJS para gerenciamento de estudantes interessados em cursos e das bolsas de estudo disponíveis. O objetivo é oferecer uma base sólida para cadastro, consulta, atualização e vinculação de estudantes às bolsas, com integração a banco de dados relacional e boas práticas de desenvolvimento.
 
 ### 🎯 Objetivos do Projeto
 
