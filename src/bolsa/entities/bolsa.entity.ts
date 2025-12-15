@@ -29,9 +29,6 @@ export class Bolsa {
   ativa: boolean; // Se a bolsa está ativa
 
   // RELACIONAMENTO
-  @OneToMany(() => Estudante, (estudante) => estudante.bolsa, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
+  @OneToMany(() => Estudante, (estudante) => estudante.bolsa)
   estudante: Estudante[];
 }

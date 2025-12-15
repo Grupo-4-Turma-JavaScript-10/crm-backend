@@ -33,6 +33,9 @@ export class Estudante {
 })
   ativo: boolean;
 
-  @ManyToOne(() => Bolsa, (bolsa) => bolsa.estudante)
+  @ManyToOne(() => Bolsa, (bolsa) => bolsa.estudante,{
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
   bolsa: Bolsa;
 }
